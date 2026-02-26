@@ -16,7 +16,7 @@ class User():
         self.user_id = user_id
         self.http = HTTPClient()
         self.associated = False
-        print(f"User {self.user_id} created successfully")
+        # print(f"User {self.user_id} created successfully")
     
     def associate(self):
         # Returns the JSON/Frame response form server
@@ -30,7 +30,7 @@ class User():
         
         if associateResponse.message == "ASSOCIATE_SUCCESS":
             self.associated = True
-            print(f"User {self.user_id} associated succesfully")
+            # print(f"User {self.user_id} associated succesfully")
             return Status.ASSOCIATE_SUCCESS
         
         return Status.ASSOCIATE_FAIL
@@ -43,7 +43,6 @@ class User():
                 id=self.user_id
             )
         )
-        print(getResponse)
 
         status = getResponse.message
         if status == "GET_RESPONSE":
@@ -66,9 +65,9 @@ class User():
                     payload=message
                 )
             )
-            print(sendResponse)
 
             status = sendResponse.message
+            status = "ASSOCIATE_FAIL"
             if status == "PUSH_SUCCESS":
                 return Status.PUSH_SUCCESS
             elif status == "BUFFER_FULL":

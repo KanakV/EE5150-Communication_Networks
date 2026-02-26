@@ -1,6 +1,6 @@
 # Messenger Client
 
-A simple peer-to-peer messaging client built with Python and Tkinter, communicating with a remote server over HTTP. This project was developed as part of a course assignment to demonstrate client-server communication, protocol design, and GUI development.
+A simple peer-to-peer messaging client built with Python and Tkinter, communicating with a remote server over HTTP. This project was developed as part of the course EE5150-Communication Networks to demonstrate client-server communication, protocol design, and GUI development.
 
 ## Project Overview
 
@@ -76,12 +76,7 @@ python main.py
 2. Enter a recipient's ID in the left panel and click **Start Chat**.
 3. Type a message in the input box and press **Enter** or click **Send**.
 
-> **Note:** Message polling is not yet running automatically. To receive messages, `poll_messages()` must be called — see the TODO in `main.py`.
-
-## Known Limitations & TODOs
-
-- **Polling loop** is currently commented out in `connect()`. It needs to be wired up to poll up to the maximum buffer size (255 × 5) on connect, then continue on a 1-second interval.
-- **Payload parsing** in `poll_messages()` is marked as TODO — received payloads are currently inserted into the UI as raw strings.
+## Known Limitations
 - The app does not support persistent message history across sessions.
 - The server URL is hardcoded in `config.py`.
 
@@ -94,12 +89,3 @@ SERVER_URL = "https://messenger-s0tl.onrender.com/"
 TIMEOUT = 5                # HTTP request timeout in seconds
 MAX_PAYLOAD_LENGTH = 254   # Maximum message length in characters
 ```
-
-## Course Notes
-
-This project demonstrates several concepts relevant to the course:
-
-- **Layered architecture** — the GUI, user logic, and HTTP transport are intentionally separated into distinct modules.
-- **Custom application protocol** — the `Frame` class defines a simple but extensible message format.
-- **Client-server polling** — messages are retrieved by polling rather than server-push, which is a useful starting point for discussing push notifications and WebSockets.
-- **Error handling at the UI layer** — status codes from the server are surfaced to the user with descriptive messages.

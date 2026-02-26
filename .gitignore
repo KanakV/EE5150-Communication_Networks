@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+*.egg-info/
+
+# Specific files
+app.py
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

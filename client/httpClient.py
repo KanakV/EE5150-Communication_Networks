@@ -12,11 +12,13 @@ class HTTPClient():
         pass
 
     def get_response(self, frame: Frame):
-        response = requests.post(
-            SERVER_URL,
-            json=frame.to_json(),
-            timeout=TIMEOUT
-        )
-        return Frame(**response.json())
-    
+        try:
+            response = requests.post(
+                    SERVER_URL,
+                    json=frame.to_json(),
+                    timeout=TIMEOUT
+                )
+            return Frame(**response.json())
+        except (TimeoutError, ConnectionError):
+            return Frame(type=0, message="ASSOCIATE_FAIL", id=frame.id)
 
